@@ -1,5 +1,21 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import Hero from "../components/Hero";
+
+
+export default function Home() {
+  return (
+    <main>
+      <Hero />
+
+      <section className="py-20 px-8 text-center">
+        <h3 className="text-3xl font-bold mb-6">Our Services</h3>
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="p-6 bg-white shadow rounded-lg">
+            <h4 className="font-semibold text-xl mb-3">Cloud Solutions</h4>
+            <p className="text-gray-600">Secure, scalable cloud engineering and deployments.</p>
+          </div>
+          <div className="p-6 bg-white shadow rounded-lg">
+            <h4 className="font-semibold text-xl mb-3">Web Development</h4>
+            <p className="text-gray-600">Modern web apps tailored to business needs.</p>
 
 /* ================= FAQ DATA ================= */
 const faqs = [
@@ -205,15 +221,17 @@ export default function Home() {
             <p className="mt-4 text-gray-600">
               Everything you need to know before working with us.
             </p>
-          </div>
 
-          <div className="space-y-4">
-            {faqs.map((item, index) => (
-              <FAQItem key={index} item={item} index={index} />
-            ))}
+          </div>
+          <div className="p-6 bg-white shadow rounded-lg">
+            <h4 className="font-semibold text-xl mb-3">App Development</h4>
+            <p className="text-gray-600">Cross-platform or native solutions for enterprises.</p>
           </div>
         </div>
       </section>
+
+    </main>
+
 
       {/* ================= CTA (DARK) ================= */}
 <section className="bg-[#F8FAFC] py-28 text-center text-gray-700">
@@ -235,5 +253,6 @@ export default function Home() {
       </section>
 
     </>
+
   );
 }
