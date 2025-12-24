@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 /* ======== JOB DATA ======== */
 const jobsData = {
@@ -108,14 +110,47 @@ const JobDetails = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validate()) return;
+
+  try {
+    const formDataToSend = new FormData();
+
+    formDataToSend.append("job_id", jobId);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("experience", formData.experience);
+    formDataToSend.append("linkedin", formData.linkedin);
+    formDataToSend.append("resume", formData.resume);
+
+    const response = await axios.post(
+      "http://127.0.0.1:8000/jobs/apply",
+      formDataToSend
+    );
+
+    console.log("Backend response:", response.data);
     setSubmitted(true);
 
-    console.log("Applied for:", job.title);
-    console.log("Form Data:", formData);
-  };
+    // reset form
+    setFormData({
+      name: "",
+      email: "",
+      experience: "",
+      linkedin: "",
+      resume: null,
+    });
+
+  } catch (error) {
+    console.error(
+      "Submit error:",
+      error.response?.data || error.message
+    );
+    alert("Failed to submit application");
+  }
+};
+
 
   if (!job) {
     return (
