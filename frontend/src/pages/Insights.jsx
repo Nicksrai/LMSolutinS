@@ -1,28 +1,9 @@
-
-
 import { motion } from "framer-motion";
 import BlogCard from "../components/insights/BlogCard";
 import EventCard from "../components/insights/EventCard";
 import TrendCard from "../components/insights/TrendCard";
 
-// const blogs = [
-//   {
-//     slug: "clean-architecture-modern-web",
-//     title: "Clean Architecture in Modern Web Apps",
-//     description: "How we design scalable frontend and backend systems.",
-//     category: "Engineering",
-//     date: "Aug 2025",
-//     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
-//   },
-//   {
-//     slug: "choosing-right-backend-startups",
-//     title: "Choosing the Right Backend for Startups",
-//     description: "FastAPI vs Node.js vs Django.",
-//     category: "Backend",
-//     date: "Jul 2025",
-//     image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-//   },
-// ];
+/* ================= DATA ================= */
 
 const blogs = [
   {
@@ -52,7 +33,6 @@ const blogs = [
   },
 ];
 
-
 const events = [
   {
     name: "Cloud & DevOps Fundamentals",
@@ -60,105 +40,156 @@ const events = [
     date: "Sep 2025",
     info: "Intro to cloud & CI/CD pipelines.",
   },
+  {
+    name: "Building Scalable APIs with FastAPI",
+    type: "Webinar",
+    date: "Oct 2025",
+    info: "Designing high-performance APIs with modern Python best practices.",
+  },
 ];
 
-const trends = ["React", "FastAPI", "AWS", "DevOps", "AI","Docker"];
+const trends = ["React", "FastAPI", "AWS", "DevOps", "AI", "Docker"];
+
+/* ================= ANIMATIONS ================= */
+
+/* Parent grid controls stagger */
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+/* Individual card animation */
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
+    },
+  },
+};
+
+/* ================= PAGE ================= */
 
 export default function InsightsPage() {
   return (
-    <div className="bg-[#0B1020] text-white">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      className="bg-[#0B1020] text-white"
+    >
 
-      {/* HEADER (MATCHES HERO STYLE) */}
+      {/* ================= HERO ================= */}
       <section className="pt-32 pb-24 text-center bg-gradient-to-b from-[#0B1020] to-[#0F172A]">
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          variants={cardVariants}
           className="text-5xl md:text-6xl font-bold"
         >
           Insights &{" "}
-          <span className="text-blue-500"> Knowledge</span>
+          <span className="text-blue-500">Knowledge</span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
+          variants={cardVariants}
           className="mt-6 text-slate-400 max-w-3xl mx-auto text-lg"
         >
           Blogs, events, and technology trends from our engineering team.
         </motion.p>
       </section>
 
-      {/* BLOGS */}
+      {/* ================= BLOGS ================= */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold mb-10">
-            Blogs
-          </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {blogs.map((blog, i) => (
+          <motion.h2
+            variants={cardVariants}
+            className="text-3xl font-semibold mb-10"
+          >
+            Blogs
+          </motion.h2>
+
+          <motion.div
+            variants={gridVariants}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {blogs.map((blog) => (
               <motion.div
                 key={blog.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={cardVariants}
               >
                 <BlogCard blog={blog} dark />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
+
         </div>
       </section>
 
-      {/* EVENTS (LIGHT CONTRAST STRIP) */}
+      {/* ================= EVENTS ================= */}
       <section className="py-20 bg-[#0F172A]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold mb-10">
-            Events
-          </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {events.map((event, i) => (
+          <motion.h2
+            variants={cardVariants}
+            className="text-3xl font-semibold mb-10"
+          >
+            Events
+          </motion.h2>
+
+          <motion.div
+            variants={gridVariants}
+            className="grid md:grid-cols-2 gap-8"
+          >
+            {events.map((event) => (
               <motion.div
                 key={event.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={cardVariants}
               >
                 <EventCard {...event} dark />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
+
         </div>
       </section>
 
-      {/* TRENDS */}
+      {/* ================= TRENDS ================= */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold mb-10">
-            Technology Trends
-          </h2>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {trends.map((trend, i) => (
+          <motion.h2
+            variants={cardVariants}
+            className="text-3xl font-semibold mb-10"
+          >
+            Technology Trends
+          </motion.h2>
+
+          <motion.div
+            variants={gridVariants}
+            className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+          >
+            {trends.map((trend) => (
               <motion.div
                 key={trend}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
+                variants={cardVariants}
               >
                 <TrendCard title={trend} dark />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
+
         </div>
       </section>
 
-    </div>
+    </motion.div>
   );
 }

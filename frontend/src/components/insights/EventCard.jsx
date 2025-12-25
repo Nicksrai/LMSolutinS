@@ -1,10 +1,19 @@
+import { motion } from "framer-motion";
+
 export default function EventCard({ name, type, date, info, dark }) {
   return (
-    <div
-      className={`rounded-xl border p-6 transition hover:shadow-xl
-      ${dark
-        ? "bg-[#0F172A] border-white/10"
-        : "bg-white border-gray-200"}`}
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.25 }}
+      className={`
+        rounded-2xl border p-6
+        hover:border-cyan-400/40
+        hover:shadow-[0_0_24px_rgba(34,211,238,0.12)]
+        transition-all
+        ${dark
+          ? "bg-[#0F172A] border-blue-500/15"
+          : "bg-white border-gray-200"}
+      `}
     >
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-semibold">
@@ -21,19 +30,13 @@ export default function EventCard({ name, type, date, info, dark }) {
         </span>
       </div>
 
-      <p
-        className={`text-sm
-        ${dark ? "text-slate-400" : "text-slate-600"}`}
-      >
+      <p className={`text-sm ${dark ? "text-slate-400" : "text-slate-600"}`}>
         {info}
       </p>
 
-      <p
-        className={`mt-4 text-xs
-        ${dark ? "text-slate-500" : "text-slate-400"}`}
-      >
+      <p className={`mt-4 text-xs ${dark ? "text-slate-500" : "text-slate-400"}`}>
         {date}
       </p>
-    </div>
+    </motion.div>
   );
 }
