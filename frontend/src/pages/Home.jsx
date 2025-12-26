@@ -105,31 +105,24 @@ const processVariants = {
 const processSteps = [
   {
     title: "Requirement Analysis",
-    description:
-      "We deeply understand business goals, user needs, and technical constraints before starting.",
-    image:
-      reqImg,
+    description: "We understand business goals, user needs, and constraints.",
+    image: reqImg,
   },
   {
     title: "Design & Architecture",
-    description:
-      "We design scalable system architecture and intuitive UI/UX for long-term success.",
-    image:
-      designImg,
+    description: "We design scalable architecture along with intuitive UI/UX.",
+    image: designImg,
   },
   {
     title: "Development & Testing",
     description:
-      "Agile development with continuous testing ensures quality, performance, and security.",
-    image:
-      devImg,
+      "Agile coding methods with continuous testing for high quality.",
+    image: devImg,
   },
   {
     title: "Deployment & Support",
-    description:
-      "We deploy, monitor, and support your product to ensure smooth operations and growth.",
-    image:
-      deployImg,
+    description: "We deploy, monitor, and maintain your product's performance.",
+    image: deployImg,
   },
 ];
 const timelineContainerVariants = {
@@ -189,12 +182,11 @@ export default function Home() {
           </motion.h1>
 
           <p className="mt-6 text-gray-300 max-w-3xl mx-auto text-lg">
-            LM Software Solutions delivers secure, scalable, and high-performance
-            software solutions using modern technologies.
+            LM Software Solutions delivers secure, scalable, and
+            high-performance software solutions using modern technologies.
           </p>
         </div>
       </section>
-
       {/* ================= SERVICES (ENHANCED WITH IMAGES) ================= */}
       <section className="bg-[#F8FAFC] py-16">
         <div className="max-w-7xl mx-auto px-6">
@@ -255,116 +247,103 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* ================= PROCESS – NEW BANNER STYLE ================= */}
+      <section className="bg-[#F8FAFC] py-8">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-24">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Our Development Process
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              A structured, transparent, and scalable approach to building
+              reliable digital products.
+            </p>
+          </div>
 
-      {/* ================= PROCESS (HORIZONTAL TIMELINE – MOTION FIXED) ================= */}
-<section className="bg-[#F8FAFC] py-16">
-  <div className="max-w-7xl mx-auto px-6">
+          <div className="relative">
+            <div className="absolute top-1/2 left-0 w-full h-[3px] bg-blue-200 rounded-full" />
 
-    {/* Heading */}
-    <div className="text-center mb-24">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        Our Development Process
-      </h2>
-      <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-        A structured, transparent, and scalable approach to building reliable digital products.
-      </p>
-    </div>
-
-    <div className="relative">
-
-      {/* Base timeline */}
-      <div className="absolute top-1/2 left-0 w-full h-[3px] bg-blue-200 rounded-full" />
-
-      {/* Animated progress line */}
-      <motion.div
-        className="absolute top-1/2 left-0 h-[3px] bg-blue-600 rounded-full"
-        initial={{ width: 0 }}
-        whileInView={{ width: "100%" }}
-        viewport={{ once: true }}
-        transition={{ duration: 2.5, ease: "easeInOut" }}
-      />
-
-      {/* GRID */}
-      <motion.div
-        className="grid grid-cols-4 grid-rows-[auto_32px_auto] gap-x-10 relative z-10"
-        variants={timelineContainerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-      >
-        {processSteps.map((step, index) => {
-          const isTop = index % 2 === 0;
-
-          return (
             <motion.div
-              key={index}
-              className="contents"
-              variants={timelineItemVariants}
+              className="absolute top-1/2 left-0 h-[3px] bg-blue-600 rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 2.2, ease: "easeInOut" }}
+            />
+
+            <motion.div
+              className="grid grid-cols-4 grid-rows-[auto_25px_auto] gap-x-4 relative z-10"
+              variants={timelineContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
             >
-              {/* CARD */}
-              <div
-                className={`${
-                  isTop ? "row-start-1" : "row-start-3"
-                } flex justify-center`}
-              >
-                <div className="bg-white w-xs rounded-2xl shadow-md
-                                hover:shadow-xl transition-all
-                                hover:ring-2 hover:ring-blue-500/30">
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="w-full h-32 object-cover rounded-t-2xl"
-                  />
-                  <div className="p-6 text-center">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {processSteps.map((step, index) => {
+                const isTop = index % 2 === 0;
 
-              {/* DOT */}
-              <div className="row-start-2 flex justify-center items-center">
-                <div className="w-5 h-5 bg-blue-600 rounded-full shadow-lg" />
-              </div>
+                return (
+                  <motion.div
+                    key={index}
+                    className="contents"
+                    variants={timelineItemVariants}
+                  >
+                    <div
+                      className={`${
+                        isTop ? "row-start-1" : "row-start-3"
+                      } flex justify-center`}
+                    >
+                      <div className="bg-white min-w-max max-w-full rounded-xl shadow-md hover:shadow-xl hover:ring-2 hover:ring-blue-500/30 transition">
+                        <img
+                          src={step.image}
+                          className="w-full h-auto max-h-40 object-cover rounded-t-xl"
+                        />
+                        <div className="p-5 text-center">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            {step.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 whitespace-nowrap">
+                            {step.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-              {/* SPACER */}
-              <div className={`${isTop ? "row-start-3" : "row-start-1"}`} />
+                    <div className="row-start-2 flex justify-center items-center">
+                      <div className="w-5 h-5 bg-blue-600 rounded-full shadow-lg" />
+                    </div>
+
+                    <div
+                      className={`${isTop ? "row-start-3" : "row-start-1"}`}
+                    />
+                  </motion.div>
+                );
+              })}
             </motion.div>
-          );
-        })}
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-      {/* ================= FAQ ================= */ }
+          </div>
+        </div>
+      </section>
       {/* ================= FAQ ================= */}
-<section className="bg-[#F8FAFC] py-10">
-  <div className="max-w-5xl mx-auto px-6">
-    
-    {/* Heading */}
-    <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        Frequently Asked Questions
-      </h2>
-      <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-        Everything you need to know before partnering with us.
-      </p>
-    </div>
+      {/* ================= FAQ ================= */}
+      <section className="bg-[#F8FAFC] py-10">
+        <div className="max-w-5xl mx-auto px-6">
+          {/* Heading */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Everything you need to know before partnering with us.
+            </p>
+          </div>
 
-    {/* FAQ List */}
-    <div className="space-y-5">
-      {faqs.map((item, index) => (
-        <FAQItem key={index} item={item} index={index} />
-      ))}
-    </div>
-  </div>
-</section>
-
+          {/* FAQ List */}
+          <div className="space-y-5">
+            {faqs.map((item, index) => (
+              <FAQItem key={index} item={item} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
